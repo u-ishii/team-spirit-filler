@@ -1,6 +1,10 @@
 {
-  "name": "Getting Started Example",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "name": "team-spirit-filler",
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
   "manifest_version": 2
 }
