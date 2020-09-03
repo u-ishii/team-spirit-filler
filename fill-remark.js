@@ -1,5 +1,3 @@
-(() => {
-
 const requestRemarkText = () => {
   const promptText = `
 備考に入力したいテキスト入力してください。
@@ -33,10 +31,14 @@ const pickDayFromId = (id) => {
 const isUnappliedDay = (row) => Array.from(row.getElementsByClassName('vapply'))
   .flatMap((applyCell) => Array.from(applyCell.getElementsByClassName('png-add')))
   .length > 0;
+
 const isWorkday = (row) => ['odd', 'even']
   .some((className) => row.getElementsByClassName(className).length > 0);
+
 const fillRemarks = (remarkText, excludedDays) => {
-  const isNotExcludedDay = (row) => !excludedDays.includes(pickDayFromId(row.id));
+  const isNotExcludedDay = (row) => {
+    return !excludedDays.includes(pickDayFromId(row.id));
+  };
   const dayRows = Array.from(document.getElementsByClassName('days'));
   const targetDayRows = dayRows
     .filter(isWorkday)
@@ -58,5 +60,5 @@ const fillRemarks = (remarkText, excludedDays) => {
 
 fillRemarks(
   requestRemarkText(),
-  requestExcludedDays(),
+  requestExcludedDays()
 );
