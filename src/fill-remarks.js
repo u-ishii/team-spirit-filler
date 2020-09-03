@@ -1,5 +1,3 @@
-(() => {
-
 const requestRemarkText = () => {
   const promptText = `
 備考に入力したいテキスト入力してください。
@@ -25,7 +23,8 @@ const requestExcludedDays = () => {
 };
 
 const pickDayFromId = (id) => {
-  const result = /\d{4}-\d{2}-(\d{2})/.exec(id);
+  const dayRegex = /\d{4}-\d{2}-(\d{2})/;
+  const result = dayRegex.exec(id);
   if (result !== null || result.length === 2) return null;
   return Number(result);
 };
