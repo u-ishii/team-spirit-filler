@@ -1,19 +1,12 @@
 const requestRemarkText = () => {
-  const promptText = `
-備考に入力したいテキスト入力してください。
-例: 在宅勤務
-    `.trim();
+  const promptText = '備考に入力したいテキスト入力してください。\n例: 在宅勤務';
   const input = prompt(promptText);
   if (input == null) throw Error();
   return input;
 };
 
 const requestExcludedDays = () => {
-  const promptText = `
-除外する日（物理出社する日）を , で区切って入力してください。
-休日はあらかじめ除外されるため、入力は必要ありません。
-    例: 11,12,13
-    `.trim();
+  const promptText = '除外する日（物理出社する日）を , で区切って入力してください。\n休日はあらかじめ除外されるため、入力は必要ありません。\n例: 11,12,13';
   const input = prompt(promptText);
   if (input === null) throw Error();
   return input.split(',')
@@ -28,12 +21,18 @@ const pickDayFromId = (id) => {
   return Number(result);
 };
 
-const isUnappliedDay = (row) => Array.from(row.getElementsByClassName('vapply'))
-  .flatMap((applyCell) => Array.from(applyCell.getElementsByClassName('png-add')))
-  .length > 0;
+const isUnappliedDay = (row) => {
+  return Array.from(row.getElementsByClassName('vapply'))
+    .flatMap((applyCell) => Array.from(applyCell.getElementsByClassName('png-add')))
+    .length > 0
+  ;
+}
 
-const isWorkday = (row) => ['odd', 'even']
-  .some((className) => row.getElementsByClassName(className).length > 0);
+const isWorkday = (row) => {
+  return ['odd', 'even']
+    .some((className) => row.getElementsByClassName(className).length > 0)
+  ;
+};
 
 const fillRemarks = (remarkText, excludedDays) => {
   const isNotExcludedDay = (row) => {
@@ -43,14 +42,17 @@ const fillRemarks = (remarkText, excludedDays) => {
   const targetDayRows = dayRows
     .filter(isWorkday)
     .filter(isUnappliedDay)
-    .filter(isNotExcludedDay);
+    .filter(isNotExcludedDay)
+  ;
+  console.log(document.getElementsByClassName('days').length);
   console.log(dayRows);
   console.log(dayRows.filter(isWorkday));
   console.log(dayRows.filter(isUnappliedDay));
   console.log(dayRows.filter(isNotExcludedDay));
   console.log(targetDayRows);
   const remarkButtons = targetDayRows
-    .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')));
+    .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')))
+  ;
   remarkButtons.forEach((remarkButton) => {
     remarkButton.click();
     document.getElementById('dialogNoteText2').value = remarkText;
