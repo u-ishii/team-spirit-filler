@@ -1,4 +1,3 @@
-
 const requestRemarkText = () => {
     const promptText = `
 備考に入力したいテキスト入力してください。
@@ -26,26 +25,40 @@ const requestExcludedDays = () => {
 
 const pickDayFromId = (id) => {
     const dayRegex = /\d{4}-\d{2}-(\d{2})/;
-    return Number(dayRegex.exec(id)[1]);
+    const result = dayRegex.exec(id);
+    if (result !== null || result.length == 2) return null;
+    return Number(result);
 };
 
 const isUnappliedDay = (row) => {
-    return row
-        .getElementsByClassName('vapply')
-        .flatMap(applyCell => applyCell.getElementsByClassName('png-add'))
+    return Array.from(row.getElementsByClassName('vapply'))
+        .flatMap(applyCell => Array.from(applyCell.getElementsByClassName('png-add')))
         .length > 0
+    ;
+};
+
+const isWorkday = (row) => {
+    return ['odd', 'even']
+        .some(className => row.getElementsByClassName(className).length > 0)
+    ;
 };
 
 const fillRemarks = (remarkText, excludedDays) => {
     const isNotExcludedDay = (row) => {
         return !excludedDays.includes(pickDayFromId(row.id));
     }
-    const workdayRows = ['days odd', 'days even']
-        .flatMap(className => Array.from(document.getElementsByClassName(className)))
+    const dayRows = Array.from(document.getElementsByClassName('days'));
+    const targetDayRows = dayRows
+        .filter(isWorkday)
         .filter(isUnappliedDay)
         .filter(isNotExcludedDay)
     ;
-    const remarkButtons = workdayRows
+    console.log(dayRows);
+    console.log(dayRows.filter(isWorkday));
+    console.log(dayRows.filter(isUnappliedDay));
+    console.log(dayRows.filter(isNotExcludedDay));
+    console.log(targetDayRows);
+    const remarkButtons = targetDayRows
         .flatMap(row => Array.from(row.getElementsByClassName('vbttn')))
     ;
     remarkButtons.forEach(remarkButton => {
@@ -53,4 +66,9 @@ const fillRemarks = (remarkText, excludedDays) => {
         document.getElementById('dialogNoteText2').value = remarkText;
         document.getElementById('dialogNoteOk').click();
     });
-}
+};
+
+fillRemarks(
+    requestRemarkText(),
+    requestExcludedDays(),
+);
