@@ -26,7 +26,7 @@ const isUnappliedDay = (row) => {
     .flatMap((applyCell) => Array.from(applyCell.getElementsByClassName('png-add')))
     .length > 0
   ;
-}
+};
 
 const isWorkday = (row) => {
   return ['odd', 'even']
