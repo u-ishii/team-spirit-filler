@@ -1,0 +1,10 @@
+{
+  "name": "team-spirit-filler",
+  "version": "1.0.0",
+  "scripts": {},
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
