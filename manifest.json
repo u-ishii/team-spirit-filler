@@ -1,0 +1,19 @@
+{
+  "name": "team-sprit-filler",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/*"],
+      "css": [],
+      "js": ["jquery.js", "myscript.js"],
+      "all_frames": true
+    }
+  ]
+}
