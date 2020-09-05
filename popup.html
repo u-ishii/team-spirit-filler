@@ -2,7 +2,13 @@
     <head>
     </head>
     <body>
-        <button id="fillRemarksButton">実行する</button>
-        <script src="fill-remarks.js"></script>
+        <fieldset>
+            <legend>備考一括入力</legend>
+            <label for="remarkContent">内容</label>
+            <input id="remarkContent" placeholder="在宅勤務" />
+            <label for="remarkExcludedDays">除外する日（ , で区切る）</label>
+            <input id="remarkExcludedDays" placeholder="11,12,13" />
+            <button id="fillRemarks">実行する</button>
+        </fieldset>
     </body>
 </html>
