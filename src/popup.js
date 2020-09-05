@@ -27,6 +27,7 @@ const generateClickListener = (messageGetter) => () => {
 fillNotesSubmit.addEventListener(
   'click',
   generateClickListener(() => ({
+    target: 'note',
     content: noteContent.value
   }))
 );
@@ -34,6 +35,7 @@ fillNotesSubmit.addEventListener(
 fillDivergencesSubmit.addEventListener(
   'click',
   generateClickListener(() => ({
+    target: 'divergence',
     reason: divergenceReason.value
   }))
 );
