@@ -34,11 +34,6 @@ const fillRemarks = (content, excludedDays) => {
     .filter(isUnappliedDay)
     .filter(isNotExcludedDay)
   ;
-  console.log(dayRows);
-  console.log(dayRows.filter(isWorkday));
-  console.log(dayRows.filter(isUnappliedDay));
-  console.log(dayRows.filter(isNotExcludedDay));
-  console.log(targetDayRows);
   const remarkButtons = targetDayRows
     .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')))
   ;
