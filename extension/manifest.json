@@ -15,7 +15,7 @@
         "<all_urls>"
       ],
       "js": [
-        "dist/main.js"
+        "dist/content_script.js"
       ],
       "all_frames": true
     }
