@@ -15,10 +15,7 @@
         "<all_urls>"
       ],
       "js": [
-        "fill-notes.js"
-      ],
-      "web_accessible_resources": [
-        "day-row-helper.js"
+        "dist/main.js"
       ],
       "all_frames": true
     }

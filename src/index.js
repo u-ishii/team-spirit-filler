@@ -1,8 +1,9 @@
+import { getTargetDayRows } from './day-row-helper'
+
 chrome.runtime.onMessage.addListener((message) => {
   fillNotes(
     message.content,
-    message.getTargetDayRows()
-    // message.excludedDays
+    getTargetDayRows(message.excludedDays)
   );
 });
 
