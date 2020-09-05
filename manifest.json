@@ -15,7 +15,7 @@
         "<all_urls>"
       ],
       "js": [
-        "fill-remarks.js"
+        "fill-notes.js"
       ],
       "all_frames": true
     }

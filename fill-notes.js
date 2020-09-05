@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener((message, q, b) => {
-  fillRemarks(
+  fillNotes(
     message.content,
     message.excludedDays
   );
@@ -24,7 +24,7 @@ const isWorkday = (row) => {
   ;
 };
 
-const fillRemarks = (content, excludedDays) => {
+const fillNotes = (content, excludedDays) => {
   const isNotExcludedDay = (row) => {
     return !excludedDays.includes(pickDayFromId(row.id));
   };
@@ -34,11 +34,11 @@ const fillRemarks = (content, excludedDays) => {
     .filter(isUnappliedDay)
     .filter(isNotExcludedDay)
   ;
-  const remarkButtons = targetDayRows
+  const noteButtons = targetDayRows
     .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')))
   ;
-  remarkButtons.forEach((remarkButton) => {
-    remarkButton.click();
+  noteButtons.forEach((noteButton) => {
+    noteButton.click();
     document.getElementById('dialogNoteText2').value = content;
     document.getElementById('dialogNoteOk').click();
   });

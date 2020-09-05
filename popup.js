@@ -1,6 +1,6 @@
 const excludedDays = document.getElementById('excludedDays');
-const remarkContent = document.getElementById('remarkContent');
-const fillRemarksSubmit = document.getElementById('fillRemarksSubmit');
+const noteContent = document.getElementById('noteContent');
+const fillNotesSubmit = document.getElementById('fillNotesSubmit');
 // const separationReason = document.getElementById('separationReason');
 // const fillSeparationsSubmit = document.getElementById('fillSeparationsSubmit');
 
@@ -24,9 +24,9 @@ const generateClickListener = (messageGetter) => () => {
   });
 };
 
-fillRemarksSubmit.addEventListener(
+fillNotesSubmit.addEventListener(
   'click',
   generateClickListener(() => ({
-    content: remarkContent.value
+    content: noteContent.value
   }))
 );
