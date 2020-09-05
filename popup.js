@@ -1,6 +1,8 @@
-const remarkContent = document.getElementById('remarkContent');
 const excludedDays = document.getElementById('excludedDays');
+const remarkContent = document.getElementById('remarkContent');
 const fillRemarksSubmit = document.getElementById('fillRemarksSubmit');
+// const separationReason = document.getElementById('separationReason');
+// const fillSeparationsSubmit = document.getElementById('fillSeparationsSubmit');
 
 const parseExcludedDays = (text) => {
   if (text === null) throw Error();
@@ -10,14 +12,21 @@ const parseExcludedDays = (text) => {
     .map((dayText) => Number(dayText));
 };
 
-fillRemarksSubmit.addEventListener('click', () => {
+const generateClickListener = (messageGetter) => () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.sendMessage(
       tabs[0].id,
       {
-        content: remarkContent.value,
-        excludedDays: parseExcludedDays(excludedDays.value)
+        excludedDays: parseExcludedDays(excludedDays.value),
+        ...messageGetter()
       }
     );
   });
-});
+};
+
+fillRemarksSubmit.addEventListener(
+  'click',
+  generateClickListener(() => ({
+    content: remarkContent.value
+  }))
+);
