@@ -1,5 +1,5 @@
 const remarkContent = document.getElementById('remarkContent');
-const remarkExcludedDays = document.getElementById('remarkExcludedDays');
+const excludedDays = document.getElementById('excludedDays');
 const fillRemarksSubmit = document.getElementById('fillRemarksSubmit');
 
 const parseExcludedDays = (text) => {
@@ -16,7 +16,7 @@ fillRemarksSubmit.addEventListener('click', () => {
       tabs[0].id,
       {
         content: remarkContent.value,
-        excludedDays: parseExcludedDays(remarkExcludedDays.value)
+        excludedDays: parseExcludedDays(excludedDays.value)
       }
     );
   });

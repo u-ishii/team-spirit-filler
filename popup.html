@@ -4,13 +4,22 @@
     </head>
     <body>
         <fieldset>
+
+            <label for="excludedDays">除外する日（ , で区切る）</label>
+            <input id="excludedDays" placeholder="11,12,13" />
+        </fieldset>
+        <fieldset>
             <legend>備考一括入力</legend>
             <label for="remarkContent">内容</label>
-            <input id="remarkContent" placeholder="在宅勤務" />
-            <label for="remarkExcludedDays">除外する日（ , で区切る）</label>
-            <input id="remarkExcludedDays" placeholder="11,12,13" />
-            <button id="fillRemarksSubmit">実行する</button>
-            <script src="popup.js"></script>
+            <input id="remarkContent" value="在宅勤務" />
+            <button id="fillRemarksSubmit">実行</button>
         </fieldset>
+        <fieldset>
+            <legend>乖離状況一括入力</legend>
+            <label for="separationReason">理由（変更不可）</label>
+            <input id="separationReason" value="在宅勤務の為" readonly />
+            <button id="fillSeparationSubmit">実行</button>
+        </fieldset>
+        <script src="popup.js"></script>
     </body>
 </html>
