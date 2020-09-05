@@ -1,19 +1,10 @@
-const requestRemarkText = () => {
-  const promptText = '備考に入力したいテキスト入力してください。\n例: 在宅勤務';
-  const input = prompt(promptText);
-  if (input == null) throw Error();
-  return input;
-};
-
-const requestExcludedDays = () => {
-  const promptText = '除外する日（物理出社する日）を , で区切って入力してください。\n休日はあらかじめ除外されるため、入力は必要ありません。\n例: 11,12,13';
-  const input = prompt(promptText);
-  if (input === null) throw Error();
-  return input.split(',')
-    .map((dayText) => dayText.trim())
-    .filter((dayText) => /^\d+$/.test(dayText))
-    .map((dayText) => Number(dayText));
-};
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log(message);
+  fillRemarks(
+    message.content,
+    message.excludedDays
+  );
+});
 
 const pickDayFromId = (id) => {
   const result = /\d{4}-\d{2}-(\d{2})/.exec(id);
@@ -34,7 +25,7 @@ const isWorkday = (row) => {
   ;
 };
 
-const fillRemarks = (remarkText, excludedDays) => {
+const fillRemarks = (content, excludedDays) => {
   const isNotExcludedDay = (row) => {
     return !excludedDays.includes(pickDayFromId(row.id));
   };
@@ -44,11 +35,7 @@ const fillRemarks = (remarkText, excludedDays) => {
     .filter(isUnappliedDay)
     .filter(isNotExcludedDay)
   ;
-  console.log(document.getElementsByClassName('days').length);
   console.log(dayRows);
-  console.log(dayRows.filter(isWorkday));
-  console.log(dayRows.filter(isUnappliedDay));
-  console.log(dayRows.filter(isNotExcludedDay));
   console.log(targetDayRows);
   const remarkButtons = targetDayRows
     .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')))
@@ -59,13 +46,3 @@ const fillRemarks = (remarkText, excludedDays) => {
     document.getElementById('dialogNoteOk').click();
   });
 };
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log(message);
-  console.log(sender);
-  // fillRemarks(
-  //   requestRemarkText(),
-  //   requestExcludedDays()
-  // );
-  // sendResponse();
-});
