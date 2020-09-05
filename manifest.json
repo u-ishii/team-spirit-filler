@@ -17,9 +17,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.google.com/*"],
-      "css": [],
-      "js": ["jquery.js", "myscript.js"],
+      "matches": ["https://ap5.lightning.force.com/lightning/n/teamspirit__AtkWorkTimeTab"],
+      "js": ["fill-remarks.js"],
       "all_frames": true
     }
   ]
