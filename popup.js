@@ -1,8 +1,8 @@
 const excludedDays = document.getElementById('excludedDays');
 const noteContent = document.getElementById('noteContent');
 const fillNotesSubmit = document.getElementById('fillNotesSubmit');
-// const separationReason = document.getElementById('separationReason');
-// const fillSeparationsSubmit = document.getElementById('fillSeparationsSubmit');
+const divergenceReason = document.getElementById('divergenceReason');
+const fillDivergencesSubmit = document.getElementById('fillDivergencesSubmit');
 
 const parseExcludedDays = (text) => {
   if (text === null) throw Error();
@@ -28,5 +28,12 @@ fillNotesSubmit.addEventListener(
   'click',
   generateClickListener(() => ({
     content: noteContent.value
+  }))
+);
+
+fillDivergencesSubmit.addEventListener(
+  'click',
+  generateClickListener(() => ({
+    reason: divergenceReason.value
   }))
 );

@@ -17,6 +17,9 @@
       "js": [
         "fill-notes.js"
       ],
+      "web_accessible_resources": [
+        "day-row-helper.js"
+      ],
       "all_frames": true
     }
   ]
