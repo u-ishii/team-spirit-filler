@@ -1,5 +1,4 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log(message);
+chrome.runtime.onMessage.addListener((message, q, b) => {
   fillRemarks(
     message.content,
     message.excludedDays
@@ -8,7 +7,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 const pickDayFromId = (id) => {
   const result = /\d{4}-\d{2}-(\d{2})/.exec(id);
-  if (result !== null || result.length === 2) return null;
+  if (result === null || result.length === 2) return null;
   return Number(result);
 };
 
@@ -21,7 +20,7 @@ const isUnappliedDay = (row) => {
 
 const isWorkday = (row) => {
   return ['odd', 'even']
-    .some((className) => row.getElementsByClassName(className).length > 0)
+    .some(className => row.className.includes(className))
   ;
 };
 
@@ -36,13 +35,16 @@ const fillRemarks = (content, excludedDays) => {
     .filter(isNotExcludedDay)
   ;
   console.log(dayRows);
+  console.log(dayRows.filter(isWorkday));
+  console.log(dayRows.filter(isUnappliedDay));
+  console.log(dayRows.filter(isNotExcludedDay));
   console.log(targetDayRows);
   const remarkButtons = targetDayRows
     .flatMap((row) => Array.from(row.getElementsByClassName('vbttn')))
   ;
   remarkButtons.forEach((remarkButton) => {
     remarkButton.click();
-    document.getElementById('dialogNoteText2').value = remarkText;
+    document.getElementById('dialogNoteText2').value = content;
     document.getElementById('dialogNoteOk').click();
   });
 };

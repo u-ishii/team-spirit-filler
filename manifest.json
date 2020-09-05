@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "<all_urls>"
   ],
   "browser_action": {
     "default_icon": "icon.png",
@@ -11,7 +12,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://ap5.lightning.force.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["fill-remarks.js"],
       "all_frames": true
     }
