@@ -60,7 +60,12 @@ const fillRemarks = (remarkText, excludedDays) => {
   });
 };
 
-fillRemarks(
-  requestRemarkText(),
-  requestExcludedDays()
-);
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log(message);
+  console.log(sender);
+  // fillRemarks(
+  //   requestRemarkText(),
+  //   requestExcludedDays()
+  // );
+  // sendResponse();
+});

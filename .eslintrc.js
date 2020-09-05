@@ -11,5 +11,8 @@ module.exports = {
   },
   rules: {
     semi: 'off'
+  },
+  globals: {
+    chrome: true
   }
 }

@@ -3,21 +3,16 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "https://*/*"
   ],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
-  },
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://ap5.lightning.force.com/lightning/n/teamspirit__AtkWorkTimeTab"],
+      "matches": ["https://ap5.lightning.force.com/*"],
       "js": ["fill-remarks.js"],
       "all_frames": true
     }
