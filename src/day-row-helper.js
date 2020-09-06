@@ -29,4 +29,10 @@ const getTargetDayRows = (excludedDays) => {
   ;
 };
 
-export { getTargetDayRows };
+const getTargetButtons = (className, excludedDays) => {
+  return getTargetDayRows(excludedDays)
+    .flatMap((row) => Array.from(row.getElementsByClassName(className)))
+  ;
+};
+
+export { getTargetButtons };
