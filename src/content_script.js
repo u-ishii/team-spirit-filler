@@ -1,4 +1,4 @@
-import {getTargetButtons} from './day-row-helper';
+import { getTargetButtons } from './day-row-helper';
 
 chrome.runtime.onMessage.addListener((message) => {
   switch (message.target) {
@@ -13,11 +13,11 @@ chrome.runtime.onMessage.addListener((message) => {
 
 const fillNotes = (content, excludedDays) => {
   getTargetButtons('vbttn', excludedDays)
-      .forEach((button) => {
-        button.click();
-        document.getElementById('dialogNoteText2').value = content;
-        document.getElementById('dialogNoteOk').click();
-      });
+    .forEach((button) => {
+      button.click();
+      document.getElementById('dialogNoteText2').value = content;
+      document.getElementById('dialogNoteOk').click();
+    });
 };
 
 const fillDivergences = (reason, excludedDays) => {
@@ -35,11 +35,11 @@ const fillDivergences = (reason, excludedDays) => {
         }
       });
     });
-    observer.observe(dialog, {attributes: true, attributeFilter: ['style']});
+    observer.observe(dialog, { attributes: true, attributeFilter: ['style'] });
     Array.from(dialog.getElementsByTagName('textarea'))
-        .forEach((textarea) => {
-          textarea.value = reason;
-        });
+      .forEach((textarea) => {
+        textarea.value = reason;
+      });
     dialog.getElementsByClassName('std-button1')[0].click();
   };
   loopFill(getTargetButtons('vacc', excludedDays));
