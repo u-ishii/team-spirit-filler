@@ -1,18 +1,15 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true
+  'env': {
+    'browser': true,
+    'es2021': true,
   },
-  extends: [
-    'standard'
+  'extends': [
+    'google',
   ],
-  parserOptions: {
-    ecmaVersion: 12
+  'parserOptions': {
+    'ecmaVersion': 12,
+    'sourceType': 'module',
   },
-  rules: {
-    semi: 'off'
+  'rules': {
   },
-  globals: {
-    chrome: true
-  }
-}
+};
