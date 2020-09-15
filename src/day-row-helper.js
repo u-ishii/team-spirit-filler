@@ -1,7 +1,7 @@
 const pickDayFromId = (id) => {
   const result = /\d{4}-\d{2}-(\d{2})/.exec(id);
-  if (result === null || result.length === 2) return null;
-  return Number(result);
+  if (result === null || result.length !== 2) return null;
+  return Number(result[1]);
 };
 
 const isUnappliedDay = (row) => {
